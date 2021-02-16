@@ -4,19 +4,19 @@ import frc.robot.controllers.BobAB.ThresholdType;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public`class BobControllerMap extends Joystick {
+public class BobXboxController extends Joystick {
 
-    public BobControllerMap(int port) {
-        super(port);
-    }
+	public BobXboxController(int port) {
+		super(port);
+	}
 
-    public BobControllerMap(int port, double xDeadband, double yDeadband) {
-        this(port);
-        this.leftStick.setDeadband(xDeadband, yDeadband);
-        this.rightStick.setDeadband(xDeadband, yDeadband);
-    }
+	public BobXboxController(int port, double xDeadband, double yDeadband) {
+		this(port);
+		this.leftStick.setDeadband(xDeadband, yDeadband);
+		this.rightStick.setDeadband(xDeadband, yDeadband);
+	}
 
-    public BobButton xButton = new BobButton(this, XboxButton.X);
+	public BobButton xButton = new BobButton(this, XboxButton.X);
 	public BobButton yButton = new BobButton(this, XboxButton.Y);
 	public BobButton aButton = new BobButton(this, XboxButton.A);
 	public BobButton bButton = new BobButton(this, XboxButton.B);
@@ -25,13 +25,13 @@ public`class BobControllerMap extends Joystick {
 	public BobButton startButton = new BobButton(this, XboxButton.START);
 	public BobButton selectButton = new BobButton(this, XboxButton.SELECT);
 	public BobButton leftStickButton = new BobButton(this, XboxButton.LEFT_STICK);
-    public BobButton rightStickButton = new BobButton(this, XboxButton.RIGHT_STICK);
-    
-    public BobAxisButton leftTriggerButton = new BobAxisButton(this, XboxAxis.LEFT_TRIGGER, .25,
+	public BobButton rightStickButton = new BobButton(this, XboxButton.RIGHT_STICK);
+
+	public BobAB leftTriggerButton = new BobAB(this, XboxAxis.LEFT_TRIGGER, .25,
 			ThresholdType.GREATER_THAN);
-	public BobAxisButton rightTriggerButton = new BobAxisButton(this, XboxAxis.RIGHT_TRIGGER, .25,
+	public BobAB rightTriggerButton = new BobAB(this, XboxAxis.RIGHT_TRIGGER, .25,
 			ThresholdType.GREATER_THAN);
-	public BobDpad Dpad = new BobDpad(this);
+	public BobDP Dpad = new BobDP(this);
 
 	public BobThumbStick leftStick = new BobThumbStick(this, XboxAxis.LEFT_X, XboxAxis.LEFT_Y);
 	public BobThumbStick rightStick = new BobThumbStick(this, XboxAxis.RIGHT_X, XboxAxis.RIGHT_Y);
@@ -88,4 +88,3 @@ public`class BobControllerMap extends Joystick {
 	}
 
 }
-
