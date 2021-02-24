@@ -8,6 +8,15 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.controllers.OI;
+
+public class Robot extends TimedRobot {
+  public static Drivetrain drivetrain;
+  public static OI controllers; 
+
+}
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
