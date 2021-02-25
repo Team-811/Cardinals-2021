@@ -1,7 +1,6 @@
 package frc.robot.lib;
 
-public class Output 
-{
+public class Output {
     private double motorTopLeft;
     private double motorTopRight;
     private double motorBottomLeft;
