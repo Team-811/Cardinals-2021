@@ -1,8 +1,7 @@
 package frc.robot.lib;
 
 
-public class TankDrive 
-{
+public class TankDrive {
     private Output driveOutput;
   
     private int forwardBackwardInvert;

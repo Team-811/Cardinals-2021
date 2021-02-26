@@ -11,16 +11,14 @@ public class KickerForward extends InstantCommand {
     }
 
 
-    @Override
-    protected void initalize() { //look into
-        Robot.kicker.forwardKicker(Constants.KICKER_FORWARD_SPEED);
-    }
+    //@Override
+    //protected void initalize() { //look into
+      //  Robot.kicker.forwardKicker(Constants.KICKER_FORWARD_SPEED);
+    //}
     
         
-        @Override
-        protected void end() {
+      //  @Override
+        //protected void end() {
             
-        }
+        //}
     }
-
-}
