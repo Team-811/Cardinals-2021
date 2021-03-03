@@ -3,11 +3,11 @@ package frc.robot.commands.Drivetrain;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class ToggleDriveMode extends InstantCommand {
+public class NormalDrive extends InstantCommand {
   /**
    * This command toggles the drive mode of the robot between arcade and tank
    */
-  public ToggleDriveMode() {
+  public NormalDrive() {
 
   }
 

@@ -5,6 +5,8 @@ package frc.robot.controllers;
  * import frc.robot.(name of folder it is in).(name of subfolder).command name
  */
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Drivetrain.NormalDrive;
+import frc.robot.commands.Drivetrain.SlowMode;
 //this import allows us to talk to the smartdashboard to display values for the drivers/pit crew
 //Reminder for Charlotte: SmartDashboard subclass?
 public class OI {
@@ -24,12 +26,16 @@ public class OI {
         if(mode)    {
             //for driver: driveController.(button).(action, usually when pressed or while held)(new (action)());
             //to diffrentiate the controllers change the controller
+          driveController.startButton.whenPressed(new NormalDrive());
+          driveController.leftBumper.whileHeld(new SlowMode());        
 
 
         }
         
         //Single Controller
         else {
+          driveController.startButton.whenPressed(new NormalDrive());
+          driveController.leftBumper.whileHeld(new SlowMode());
 
         }
 

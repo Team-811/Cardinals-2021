@@ -41,7 +41,7 @@ public class Drivetrain extends Subsystem implements ISubsystem {
   private CANEncoder bottomLeftEncoder;
   private CANEncoder bottomRightEncoder;
 
-  private AHRS gyro;
+  
 
   private TankDrive drivetrain;
   private Output driveOutput;
@@ -60,9 +60,6 @@ public class Drivetrain extends Subsystem implements ISubsystem {
     bottomLeftEncoder = bottomLeftMotor.getEncoder();
     bottomRightEncoder = bottomRightMotor.getEncoder();
 
-    gyro = new AHRS(SerialPort.Port.kMXP);
-    gyro.reset();
-    invertGyro(false);
 
     resetSubsystem();
 
@@ -108,13 +105,6 @@ public class Drivetrain extends Subsystem implements ISubsystem {
     
     else {
 
-      double correction;
-      if (Math.abs(rotation) < 0.2) {
-
-        correction = gyroCorrection();
-      } else {
-        correction = 0;
-      }
 
      
         driveOutput = drivetrain.arcadeDrive(leftStick * SpeedScale, rotation * SpeedScale * 0.8);
@@ -125,7 +115,6 @@ public class Drivetrain extends Subsystem implements ISubsystem {
       topRightMotor.set(-driveOutput.getRightValue());
       bottomRightMotor.set(-driveOutput.getRightValue());
 
-      prevAngle = getGyroAngle(); // Stores previous angle
     }
   }
 
@@ -303,7 +292,6 @@ public class Drivetrain extends Subsystem implements ISubsystem {
 
   @Override
   public void outputSmartdashboard() {
-    SmartDashboard.putNumber("Gyro Angle", getGyroAngle());
     SmartDashboard.putNumber("Net Forward Distance (in)", getForwardDistance());
     SmartDashboard.putNumber("Forward Velocity (rpm)", getForwardVelocity());
     SmartDashboard.putBoolean("Slow Mode", isSlow);
@@ -327,7 +315,6 @@ public class Drivetrain extends Subsystem implements ISubsystem {
   @Override
   public void zeroSensors() {
     zeroEncoders();
-    zeroGyro();
   }
 
   @Override
@@ -342,33 +329,4 @@ public class Drivetrain extends Subsystem implements ISubsystem {
     setDefaultCommand(new DriveWithJoy());
   }
 
-  // Gyro stuff
-  private int gyroInversion = 1;
-
-  public double getGyroAngle() {
-    return gyroInversion * gyro.getAngle();
-  }
-
-  public double getAngularVelocity() {
-    return gyroInversion * gyro.getRate();
-  }
-
-  public void invertGyro(boolean inverted) {
-    if (inverted)
-      gyroInversion = -1;
-    else
-      gyroInversion = 1;
-  }
-
-  private double gyroCorrectRate = 0.1;
-
-  private double prevAngle = 0;
-
-  public double gyroCorrection() {
-    return (getGyroAngle() - prevAngle) * gyroCorrectRate;
-  }
-
-  public void zeroGyro() {
-    gyro.zeroYaw();
-  }
 }

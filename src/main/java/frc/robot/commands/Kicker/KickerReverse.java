@@ -10,21 +10,21 @@ public KickerReverse() {
     requires(Robot.kicker);
 
 
-    @Override
-    protected void initialize() {
+    //@Override
+    //protected void initialize() {
 
-    }
+    //}
 
-    @Override
-    protected void execute() {
-        Robot.kicker.reverseKicker(Constants.KICKER_BACKWARDS_SPEED);
-    }
+    //@Override
+    //protected void execute() {
+      // Robot.kicker.reverseKicker(Constants.KICKER_BACKWARDS_SPEED);
+    //}
     
 
-    @Override
-    protected void end() {
+    //@Override
+    //protected void end() {
         
-    }
+    //}
 
   }
 
