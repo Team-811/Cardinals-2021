@@ -36,9 +36,9 @@ public class Kicker extends Subsystem implements ISubsystem {
     public boolean kickerRetracting() {
         return kickerExtending;
     }
-    public Kicker() {
-       kickerMotor = new TalonSRX(RobotMap.KICKER);
-    }
+    //public Kicker() {
+      // kickerMotor = new TalonSRX(RobotMap.KICKER);
+    //}
 
 
     public void forwardKicker(double speed) {
