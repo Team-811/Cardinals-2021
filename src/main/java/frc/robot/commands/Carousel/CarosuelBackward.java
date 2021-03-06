@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class CarouselBackward extends Command{
+public class CarosuelBackward extends Command{
 
-    public CarouselBackward() {
+    public CarosuelBackward() {
         requires(Robot.carousel);
     }
 
