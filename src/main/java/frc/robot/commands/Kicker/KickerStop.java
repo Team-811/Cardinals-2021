@@ -5,26 +5,22 @@ import frc.robot.Robot;
 
 public class KickerStop extends InstantCommand {
 
-public KickerStop() {
-    requires(Robot.kicker);
+  public KickerStop() {
+  } 
 
+  @Override
+     protected void initialize() {
+     
+    }
+ 
+   @Override
+     protected void execute() {
+       Robot.kicker.stopKicker();
+     }
 
-    //@Override
-    //protected void initialize() {
-
-    //}
-
-    //@Override
-    //protected void execute() {
-      //  Robot.kicker.stopKicker();
-    //}
-
-    //@Override
-    //protected void end() {
-        
-    //}
-
-  }
-
+   @Override
+     protected void end() {    
+     
+    }
 
 }

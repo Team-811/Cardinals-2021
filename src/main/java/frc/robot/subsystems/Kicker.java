@@ -1,15 +1,10 @@
 package frc.robot.subsystems;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
+import frc.robot.commands.Kicker.KickerForward;
 
 public class Kicker extends Subsystem implements ISubsystem {
 
@@ -21,9 +16,8 @@ public class Kicker extends Subsystem implements ISubsystem {
     public static Kicker getInstance() {
         return instance;
     }
-
+ 
     private TalonSRX kickerMotor;
-    
 
     private boolean kickerExtending = false;
 
@@ -34,12 +28,12 @@ public class Kicker extends Subsystem implements ISubsystem {
     private boolean kickerRetracting = false;
 
     public boolean kickerRetracting() {
-        return kickerExtending;
+        return kickerRetracting;
     }
-    //public Kicker() {
-      // kickerMotor = new TalonSRX(RobotMap.KICKER);
-    //}
 
+    public Kicker() {
+        super();
+    }
 
     public void forwardKicker(double speed) {
         if (kickerRetracting == false) {
@@ -72,39 +66,33 @@ public class Kicker extends Subsystem implements ISubsystem {
         kickerMotor.setInverted(false);
     }
 
-    private void configureMotorControllers() {
-        kickerMotor.setInverted(true);
-    }
-
     @Override
     public void outputSmartdashboard() {
         SmartDashboard.putBoolean("Kicker Extending", kickerExtending);
         SmartDashboard.putBoolean("Kicker Retracting", kickerRetracting);
 
     }
-    
+
+    @Override
+    public void initDefaultCommand() {
+      // Set the default command for a subsystem here.
+      // setDefaultCommand(new MySpecialCommand());
+      setDefaultCommand(new KickerForward());
+    }
 
     @Override
     public void resetSubsystem() {
         stopKicker();
         zeroSensors();
-        configureMotorControllers();
+        
     }
-
-
     @Override
     public void zeroSensors() {
-
+ 
     }
-
-    @Override
-    public void initDefaultCommand() {
-
-    }
-
     @Override
     public void testSubsystem() {
-
+  
     }
 
 }
