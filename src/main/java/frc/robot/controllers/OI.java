@@ -12,6 +12,8 @@ import frc.robot.commands.Drivetrain.SlowMode;
 import frc.robot.commands.Intake.IntakeForward;
 import frc.robot.commands.Kicker.KickerForward;
 import frc.robot.commands.Kicker.KickerReverse;
+import frc.robot.commands.Shooter.ShooterForward;
+import frc.robot.commands.Shooter.ShooterReverse;
 //this import allows us to talk to the smartdashboard to display values for the drivers/pit crew
 //Reminder for Charlotte: SmartDashboard subclass?
 public class OI {
@@ -41,11 +43,17 @@ public class OI {
         else {
           driveController.startButton.whenPressed(new NormalDrive());
           driveController.leftBumper.whileHeld(new SlowMode());
+
           driveController.aButton.whenPressed(new IntakeForward());
+          driveController.rightBumper.whenPressed(new ShooterReverse());
+
           driveController.xButton.whenPressed(new KickerForward());
           driveController.bButton.whenPressed(new KickerReverse());
+
           driveController.leftTriggerButton.whileHeld(new CarouselForward());
-          driveController.yButton.whileHeld(new CarosuelBackward());
+          driveController.rightTriggerButton.whileHeld(new CarosuelBackward());
+
+          driveController.yButton.whenPressed(new ShooterForward());
 
         }
 
