@@ -13,6 +13,8 @@ import frc.robot.controllers.OI;
 import frc.robot.subsystems.Kicker;
 import frc.robot.subsystems.Carousel;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,7 +28,7 @@ public class Robot extends TimedRobot {
   public static Kicker kicker;
   public static Carousel carousel;
   public static Intake intake;
-  
+  public static Shooter shooter;
 
 
 

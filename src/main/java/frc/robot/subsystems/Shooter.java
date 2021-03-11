@@ -25,6 +25,10 @@ public class Shooter extends Subsystem implements ISubsystem {
 
     private boolean shooterIsRunning = false;
 
+    private boolean shooterIsRunning(){
+        return shooterIsRunning;
+    }
+
     public Shooter() {
         iMotor = new CANSparkMax(RobotMap.SHOOTER, MotorType.kBrushed);
         iEncoder = iMotor.getEncoder();
@@ -52,15 +56,20 @@ public class Shooter extends Subsystem implements ISubsystem {
     public void shooterReverse(double speed){
         shooterIsRunning = !shooterIsRunning;
         if (shooterIsRunning){
-            iMotor.set(-speed);
+            iMotor.set(speed);
         }else {
             iMotor.set(0);
         }
     }
     
-    public void stopIntake(){
+    public void stopShooter(){
         shooterIsRunning = false;
         iMotor.set(0);
+    }
+
+    private void configureMotorControllers() {
+        iMotor.setInverted(true);
+        iMotor.setIdleMode(IdleMode.kBrake);
     }
 
     @Override
@@ -71,6 +80,13 @@ public class Shooter extends Subsystem implements ISubsystem {
     @Override
     public void zeroSensors() {
         iEncoder.setPosition(0);
+    }
+
+    @Override
+    public void resetSubsystem() {
+        stopShooter();
+        zeroSensors();
+        configureMotorControllers();
     }
 
     @Override

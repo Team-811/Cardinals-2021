@@ -57,7 +57,7 @@ public class Intake extends Subsystem implements ISubsystem {
     public void intakeReverse(double speed){
         intakeIsRunning = !intakeIsRunning;
         if (intakeIsRunning){
-            iMotor.set(-speed);
+            iMotor.set(speed);
         } else {
             iMotor.set(0);
         }
