@@ -7,6 +7,9 @@ public class RobotMap {
     public static final int DRIVE_BOTTOM_LEFT_MOTOR = 2;
     public static final int DRIVE_BOTTOM_RIGHT_MOTOR = 4;
 
+    //This is just a placeholder I have no idea what this should be.
+    public static final int SHOOTER = 6;
+
     public static final int INTAKE = 7;
 
     //intake is 7 

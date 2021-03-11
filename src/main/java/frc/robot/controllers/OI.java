@@ -5,8 +5,13 @@ package frc.robot.controllers;
  * import frc.robot.(name of folder it is in).(name of subfolder).command name
  */
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Carousel.CarosuelBackward;
+import frc.robot.commands.Carousel.CarouselForward;
 import frc.robot.commands.Drivetrain.NormalDrive;
 import frc.robot.commands.Drivetrain.SlowMode;
+import frc.robot.commands.Intake.IntakeForward;
+import frc.robot.commands.Kicker.KickerForward;
+import frc.robot.commands.Kicker.KickerReverse;
 //this import allows us to talk to the smartdashboard to display values for the drivers/pit crew
 //Reminder for Charlotte: SmartDashboard subclass?
 public class OI {
@@ -36,6 +41,11 @@ public class OI {
         else {
           driveController.startButton.whenPressed(new NormalDrive());
           driveController.leftBumper.whileHeld(new SlowMode());
+          driveController.aButton.whenPressed(new IntakeForward());
+          driveController.xButton.whenPressed(new KickerForward());
+          driveController.bButton.whenPressed(new KickerReverse());
+          driveController.leftTriggerButton.whileHeld(new CarouselForward());
+          driveController.yButton.whileHeld(new CarosuelBackward());
 
         }
 
