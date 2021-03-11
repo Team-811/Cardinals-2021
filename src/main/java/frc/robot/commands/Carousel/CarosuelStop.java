@@ -2,7 +2,7 @@ package frc.robot.commands.Carousel;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
-
+/*
 public class CarouselStop extends InstantCommand {
 
     public CarouselStop() {
@@ -25,3 +25,4 @@ public class CarouselStop extends InstantCommand {
         
     }
 }
+*/

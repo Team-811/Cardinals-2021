@@ -13,7 +13,7 @@ public class IntakeReverse extends InstantCommand{
     }
 
     @Override
-    protected void initalize() {}
+    protected void initialize() {}
 
     @Override
     protected void execute() {
