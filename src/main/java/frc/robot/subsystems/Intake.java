@@ -5,14 +5,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-
-//REMINDER: CODE INTO THE ROBOT.JAVA 
 
 public class Intake extends Subsystem implements ISubsystem {
     private static Intake instance = new Intake();    
@@ -26,7 +22,7 @@ public class Intake extends Subsystem implements ISubsystem {
 
     private boolean intakeIsRunning = false;
 
-    private boolean intakeRunning() {
+    private boolean intakeIsRunning() {
         return intakeIsRunning;
     }
 

@@ -16,8 +16,9 @@ import frc.robot.commands.Shooter.ShooterForward;
 import frc.robot.commands.Shooter.ShooterReverse;
 //this import allows us to talk to the smartdashboard to display values for the drivers/pit crew
 //Reminder for Charlotte: SmartDashboard subclass?
+//False is single control
 public class OI {
-    private boolean mode = true;
+    private boolean mode = false;
 
     public BobXboxController driveController;
     public BobXboxController operatorController;
