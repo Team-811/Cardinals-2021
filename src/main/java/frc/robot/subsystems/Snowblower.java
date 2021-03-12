@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Snowblower.SnowblowerForward;
 
 public class Snowblower extends Subsystem implements ISubsystem{
@@ -69,7 +70,8 @@ public class Snowblower extends Subsystem implements ISubsystem{
 
     @Override
     public void outputSmartdashboard() {
-        // TODO Auto-generated method stub
+        SmartDashboard.putBoolean("Snowblower Spinning", spiningForward);
+        SmartDashboard.putBoolean("Snowblower Reversing", spinningBackward);
 
     }
 
@@ -81,8 +83,8 @@ public class Snowblower extends Subsystem implements ISubsystem{
 
     @Override
     public void resetSubsystem() {
-        // TODO Auto-generated method stub
-
+        stopSnowblower();
+        zeroSensors();
     }
 
     @Override
