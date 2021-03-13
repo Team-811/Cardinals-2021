@@ -32,34 +32,41 @@ public class Carousel extends Subsystem implements ISubsystem {
     }
     
     public void forwardCarousel(double speed){
-        if (goingBackward == false) {
+
+        // if not going backwards, take ownership for forward
+        if ( goingBackward == false ) {
             goingForward = true;
-            carouselMotor.setInverted(false);
-            carouselMotor.set(ControlMode.PercentOutput, speed);
-        } else {
-            goingForward = false;
             carouselMotor.setInverted(true);
+            carouselMotor.set(ControlMode.PercentOutput, speed);
         }
+        //  else {
+        //     goingForward = false;
+        //     carouselMotor.setInverted(true);
+        // }
     }
 
     public void reverseCarousel(double speed) {
+
+        // if not going forward already, take ownership for backwards
+
         if (goingForward == false) {
             goingBackward = true;
             carouselMotor.setInverted(false);
             carouselMotor.set(ControlMode.PercentOutput, speed);
-        } else {
-            goingBackward = false;
-            carouselMotor.setInverted(true);
-        }
+        } 
+    //  else {
+        //     goingBackward = false;
+        //     carouselMotor.setInverted(true);
+        // }
     }
-/*
+
     public void stopCarousel() {
         goingBackward = false;
         goingForward = false;
         carouselMotor.set(ControlMode.PercentOutput, 0);
         carouselMotor.setInverted(false);
     }
-*/
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new CarouselForward());
@@ -83,7 +90,7 @@ public class Carousel extends Subsystem implements ISubsystem {
 
     @Override
     public void resetSubsystem() {
-       // stopCarousel();
+        stopCarousel();
         zeroSensors();
     }
 
