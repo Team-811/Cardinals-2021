@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.Carousel.CarouselForward;
 
 public class Carousel extends Subsystem implements ISubsystem {
@@ -16,12 +17,15 @@ public class Carousel extends Subsystem implements ISubsystem {
 
     private TalonSRX carouselMotor;
     private boolean goingForward = false;
+    private boolean goingBackward = false;
 
+
+    public Carousel() {
+        carouselMotor = new TalonSRX(RobotMap.CAROUSEL);
+    }
     public boolean carouselForward() {
         return goingForward;
     }
-
-    private boolean goingBackward = false;
 
     public boolean carouselBackward() {
         return goingBackward;
@@ -34,6 +38,7 @@ public class Carousel extends Subsystem implements ISubsystem {
             carouselMotor.set(ControlMode.PercentOutput, speed);
         } else {
             goingForward = false;
+            carouselMotor.setInverted(true);
         }
     }
 
@@ -47,14 +52,14 @@ public class Carousel extends Subsystem implements ISubsystem {
             carouselMotor.setInverted(true);
         }
     }
-
+/*
     public void stopCarousel() {
         goingBackward = false;
         goingForward = false;
         carouselMotor.set(ControlMode.PercentOutput, 0);
         carouselMotor.setInverted(false);
     }
-
+*/
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new CarouselForward());
@@ -78,7 +83,7 @@ public class Carousel extends Subsystem implements ISubsystem {
 
     @Override
     public void resetSubsystem() {
-        stopCarousel();
+       // stopCarousel();
         zeroSensors();
     }
 

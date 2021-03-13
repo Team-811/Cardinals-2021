@@ -18,7 +18,7 @@ import frc.robot.commands.Shooter.ShooterReverse;
 //Reminder for Charlotte: SmartDashboard subclass?
 //False is single control
 public class OI {
-    private boolean mode = false;
+    private boolean mode = true;
 
     public BobXboxController driveController;
     public BobXboxController operatorController;
@@ -28,15 +28,25 @@ public class OI {
     }
 
     public OI() {
-        driveController = new BobXboxController(1, .3, .3);
+        driveController = new BobXboxController(0, .3, .3);
         operatorController = new BobXboxController(1, .3, .3);
 
         if(mode)    {
             //for driver: driveController.(button).(action, usually when pressed or while held)(new (action)());
             //to diffrentiate the controllers change the controller
           driveController.startButton.whenPressed(new NormalDrive());
-          driveController.leftBumper.whileHeld(new SlowMode());        
+          driveController.leftBumper.whileHeld(new SlowMode());  
 
+          operatorController.aButton.whileHeld(new IntakeForward());
+          operatorController.rightBumper.whileHeld(new ShooterReverse());
+
+          operatorController.xButton.whenPressed(new KickerForward());
+          operatorController.bButton.whenPressed(new KickerReverse());
+
+          operatorController.leftTriggerButton.whileHeld(new CarouselForward());
+          operatorController.rightTriggerButton.whileHeld(new CarosuelBackward());
+
+          operatorController.yButton.whenPressed(new ShooterReverse());
 
         }
         
@@ -45,7 +55,7 @@ public class OI {
           driveController.startButton.whenPressed(new NormalDrive());
           driveController.leftBumper.whileHeld(new SlowMode());
 
-          driveController.aButton.whenPressed(new IntakeForward());
+          driveController.aButton.whileHeld(new IntakeForward());
           driveController.rightBumper.whenPressed(new ShooterReverse());
 
           driveController.xButton.whenPressed(new KickerForward());

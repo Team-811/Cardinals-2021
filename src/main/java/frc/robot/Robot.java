@@ -14,7 +14,7 @@ import frc.robot.subsystems.Kicker;
 import frc.robot.subsystems.Carousel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Snowblower;
+//import frc.robot.subsystems.Snowblower;
 
 
 /**
@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
   public static Carousel carousel;
   public static Intake intake;
   public static Shooter shooter;
-  public static Snowblower snowblower;
+  //public static Snowblower snowblower;
 
 
   private static final String kDefaultAuto = "Default";
