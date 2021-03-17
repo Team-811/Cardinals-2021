@@ -33,12 +33,13 @@ public class Kicker extends Subsystem implements ISubsystem {
 
     public Kicker() {
         super();
+        kickerMotor.setInverted(false);
+
     }
 
     public void forwardKicker(double speed) {
         if (kickerRetracting == false) {
             kickerExtending = true;
-            kickerMotor.setInverted(false);
             kickerMotor.set(ControlMode.PercentOutput, speed);
         } else {
             kickerExtending = false;
@@ -50,11 +51,9 @@ public class Kicker extends Subsystem implements ISubsystem {
      public void reverseKicker(double speed) {
         if (kickerExtending == false) {
             kickerRetracting = true;
-            kickerMotor.setInverted(false);
             kickerMotor.set(ControlMode.PercentOutput, speed);
         } else {
             kickerRetracting = false;
-            kickerMotor.setInverted(true);
         }
 
     }
@@ -63,7 +62,6 @@ public class Kicker extends Subsystem implements ISubsystem {
         kickerExtending = false;
         kickerRetracting = false;
         kickerMotor.set(ControlMode.PercentOutput, 0);
-        kickerMotor.setInverted(false);
     }
 
     @Override

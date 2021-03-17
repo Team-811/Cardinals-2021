@@ -17,7 +17,7 @@ public class ShooterReverse extends InstantCommand {
 
     @Override
     protected void execute() {
-        Robot.shooter.shooterReverse(Constants.SHOOTER_SPEED_REVERSE);
+        Robot.shooter.shooterForward(Constants.SHOOTER_SPEED_REVERSE);
     }
 
     @Override

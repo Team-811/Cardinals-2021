@@ -17,7 +17,7 @@ public class CarosuelBackward extends Command{
 
     @Override
     protected void execute() {
-      Robot.carousel.reverseCarousel(Constants.CAROUSEL_BACKWARD_SPEED);
+      Robot.carousel.spinCarousel ( Constants.CAROUSEL_BACKWARD_SPEED );
     }
 
     @Override

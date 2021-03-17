@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Carousel.CarouselForward;
+import frc.robot.Constants;
 
 public class Carousel extends Subsystem implements ISubsystem {
     
@@ -16,55 +17,79 @@ public class Carousel extends Subsystem implements ISubsystem {
     }
 
     private TalonSRX carouselMotor;
-    private boolean goingForward = false;
-    private boolean goingBackward = false;
-
+    private boolean bSpinning;      // flag to denote if this is spinning currently
+    private boolean bForward;       // direction of the spin (true if foward, false if reverse)
 
     public Carousel() {
         carouselMotor = new TalonSRX(RobotMap.CAROUSEL);
-    }
-    public boolean carouselForward() {
-        return goingForward;
+        resetData();
+        carouselMotor.setInverted(false); // only do this once!
     }
 
-    public boolean carouselBackward() {
-        return goingBackward;
+    /** Reset the member data to default values */
+    public void resetData ( void )
+    {
+        setUsage ( false );
+        setDirection ( true  );
     }
-    
-    public void forwardCarousel(double speed){
 
-        // if not going backwards, take ownership for forward
-        if ( goingBackward == false ) {
-            goingForward = true;
-            carouselMotor.setInverted(true);
+    /** 
+     * determine if the unit is spinning/in use
+     * @return true if unit is in use
+     */
+    public boolean isInUse() {
+        return bSpinning;
+    }
+    /** 
+     * set flag to denote unit is in use
+     * @param bFlag  true if in use, false if not
+     */
+    public void setUsage ( boolean bFlag )
+    {
+        bSpinning = bFlag;
+    }
+
+    /**
+     * Set the direction of unit,while in use
+     * @param bIsForward  true if "foward"
+     */
+    public void setDirection ( boolean bIsForward ) 
+    {
+        bForward = bIsForward;
+    }
+    /** 
+     * get the direction of the unit in use
+     * @return true, if spinning foward, false for reverse
+     */
+    public boolean getDirection ( void )
+    {
+        return bForward;
+    }
+
+
+    /***********************************************************
+     * Spin the carousel if not already spinning
+     *  @param speed          how fast to spin motor, in directio (-1 to 1)
+     *  @param motorInversion Direction of motor (See Constants)
+     ************************************************************/
+    public void spinCarousel (double speed )
+    {
+        // if not in use, take ownership
+        if ( ! isInUse() )
+        {
+            setUsage ( true );
+            setDirection ( speed > 0.0 );
             carouselMotor.set(ControlMode.PercentOutput, speed);
         }
-        //  else {
-        //     goingForward = false;
-        //     carouselMotor.setInverted(true);
-        // }
     }
-
-    public void reverseCarousel(double speed) {
-
-        // if not going forward already, take ownership for backwards
-
-        if (goingForward == false) {
-            goingBackward = true;
-            carouselMotor.setInverted(false);
-            carouselMotor.set(ControlMode.PercentOutput, speed);
-        } 
-    //  else {
-        //     goingBackward = false;
-        //     carouselMotor.setInverted(true);
-        // }
-    }
-
-    public void stopCarousel() {
-        goingBackward = false;
-        goingForward = false;
+    /**
+     * Stop the carousel and reset default data
+     */
+    public void stopCarousel() 
+    {
+        // stop motion
+        resetData ();
         carouselMotor.set(ControlMode.PercentOutput, 0);
-        carouselMotor.setInverted(false);
     }
 
     @Override
@@ -84,8 +109,7 @@ public class Carousel extends Subsystem implements ISubsystem {
 
     @Override
     public void outputSmartdashboard() {
-        SmartDashboard.putBoolean("Carousel Spinning", goingForward);
-        SmartDashboard.putBoolean("Carousel Reversing", goingBackward);
+        SmartDashboard.putBoolean("Carousel Spin Fwd", getDirection() );
     }
 
     @Override
