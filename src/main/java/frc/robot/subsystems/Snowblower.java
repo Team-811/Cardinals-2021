@@ -26,6 +26,11 @@ public class Snowblower extends Subsystem implements ISubsystem{
         return spiningForward;
     }
 
+    public Snowblower ()
+    {
+         snowblowerMotor.setInverted(false);
+    }
+
     private boolean spinningBackward = false;
 
     public boolean spinningBackward() {
@@ -35,7 +40,6 @@ public class Snowblower extends Subsystem implements ISubsystem{
     public void snowblowerForward(double speed){
         if (spinningBackward == false) {
             spiningForward = true;
-            snowblowerMotor.setInverted(false);
             snowblowerMotor.set(ControlMode.PercentOutput, speed);
         } 
         
@@ -47,11 +51,9 @@ public class Snowblower extends Subsystem implements ISubsystem{
     public void snowblowerBackward(double speed) {
         if (spiningForward == false) {
             spinningBackward = true;
-            snowblowerMotor.setInverted(false);
             snowblowerMotor.set(ControlMode.PercentOutput, speed);
         } else {
             spinningBackward = false;
-            snowblowerMotor.setInverted(true);
         }
 
     }
@@ -60,7 +62,6 @@ public class Snowblower extends Subsystem implements ISubsystem{
         spinningBackward = false;
         spiningForward = false;
         snowblowerMotor.set(ControlMode.PercentOutput, 0);
-        snowblowerMotor.setInverted(false);
     }
 
     @Override

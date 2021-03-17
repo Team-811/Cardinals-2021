@@ -28,6 +28,14 @@ public class Shooter extends Subsystem implements ISubsystem {
     private boolean shooterIsRunning(){
         return shooterIsRunning;
     }
+    private void setShooter ( boolean bInUse )
+    {
+        shooterIsRunning = bInUse;
+    }
+    private void toggleShooter ( void )
+    {
+        shooterIsRunning = !shooterIsRunning;
+    }
 
     public Shooter() {
         iMotor = new CANSparkMax(RobotMap.SHOOTER, MotorType.kBrushed);
@@ -35,31 +43,42 @@ public class Shooter extends Subsystem implements ISubsystem {
         resetSubsystem();
     }
 
-    public void runShooter(double speed) {
-        iMotor.set(speed);
-        if (speed == 0) {
-            shooterIsRunning = false;
-        } else {
-            shooterIsRunning = true;
+    // public void runShooter(double speed) {
+    //     iMotor.set(speed);
+    //     if (speed == 0.0) {
+    //         shooterIsRunning = false;
+    //     } else {
+    //         shooterIsRunning = true;
+    //     }
+    // }
+
+    /**
+     * change the state of the shooter
+     * If already in action, disable it
+     * If not running, use the speed
+     * @param speed  Speed of motor (range: -1.0 to 1.0)
+     */
+    public void toggleShooter ( double speed )
+    {
+        shooterIsRunning = !shooterIsRunning;
+        if (shooterIsRunning)
+        {
+            iMotor.set(speed);
+        }
+        else 
+        {
+            iMotor.set(0);
         }
     }
 
+    /** @TODO - remove this,replace usage with toggleShooter */
     public void shooterForward(double speed){
-        shooterIsRunning = !shooterIsRunning;
-        if (shooterIsRunning){
-            iMotor.set(speed);
-        }else {
-            iMotor.set(0);
-        }
+        toggleShooter (speed);
     }
 
+    /** @TODO - remove this,replace usage with toggleShooter */
     public void shooterReverse(double speed){
-        shooterIsRunning = !shooterIsRunning;
-        if (shooterIsRunning){
-            iMotor.set(speed);
-        }else {
-            iMotor.set(0);
-        }
+        toggleShooter (speed);
     }
     
     public void stopShooter(){
@@ -68,7 +87,7 @@ public class Shooter extends Subsystem implements ISubsystem {
     }
 
     private void configureMotorControllers() {
-        iMotor.setInverted(true);
+        iMotor.setInverted(false);
         iMotor.setIdleMode(IdleMode.kBrake);
     }
 

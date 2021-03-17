@@ -69,7 +69,7 @@ public class Intake extends Subsystem implements ISubsystem {
     }
 
     private void configureMotorControllers() {
-        iMotor.setInverted(true);
+        iMotor.setInverted(false);
         iMotor.setIdleMode(IdleMode.kBrake);
     }
 
