@@ -15,8 +15,8 @@ public class RobotMap {
 
     // Talon SRX
 
-    public static final int TBD1     = 10;
-    public static final int TBD2     = 11;
+    public static final int TBD1     = 10; //ball injection wheel
+    public static final int TBD2     = 11; //shooter turntable (snowblower)
     public static final int CAROUSEL = 12;
    
     //public static final int KICKER = 5;
