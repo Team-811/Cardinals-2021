@@ -44,6 +44,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    drivetrain = Drivetrain.getInstance();
+    kicker = Kicker.getInstance();
+    carousel = Carousel.getInstance();
+    intake = Intake.getInstance();
+    shooter = Shooter.getInstance();
+    controllers = OI.getInstance();
+
+
+
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
