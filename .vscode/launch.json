@@ -5,13 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",
-      "name": "Launch Main",
-      "request": "launch",
-      "mainClass": "frc.robot.Main",
-      "projectName": "Cardinals-2021"
-    },
-    {
       "type": "wpilib",
       "name": "WPILib Desktop Debug",
       "request": "launch",
@@ -22,6 +15,6 @@
       "name": "WPILib roboRIO Debug",
       "request": "launch",
       "desktop": false
-    }
+    },
   ]
 }

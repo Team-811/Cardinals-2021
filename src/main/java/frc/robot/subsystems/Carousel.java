@@ -27,7 +27,7 @@ public class Carousel extends Subsystem implements ISubsystem {
     }
 
     /** Reset the member data to default values */
-    public void resetData ( void )
+    public void resetData()
     {
         setUsage ( false );
         setDirection ( true  );
@@ -61,7 +61,7 @@ public class Carousel extends Subsystem implements ISubsystem {
      * get the direction of the unit in use
      * @return true, if spinning foward, false for reverse
      */
-    public boolean getDirection ( void )
+    public boolean getDirection()
     {
         return bForward;
     }

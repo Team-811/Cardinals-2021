@@ -32,7 +32,7 @@ public class Shooter extends Subsystem implements ISubsystem {
     {
         shooterIsRunning = bInUse;
     }
-    private void toggleShooter ( void )
+    private void toggleShooter() 
     {
         shooterIsRunning = !shooterIsRunning;
     }
