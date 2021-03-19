@@ -34,7 +34,7 @@ public class Kicker extends Subsystem implements ISubsystem {
     }
 
     public Kicker() {
-        kickerMotor = new TalonSRX(RobotMap.TBD1);
+        kickerMotor = new TalonSRX(RobotMap.KICKER);
         resetData();
         kickerMotor.setInverted(false);
 
