@@ -38,7 +38,6 @@ public class OI {
           driveController.leftBumper.whileHeld(new SlowMode());  
 
           operatorController.aButton.whileHeld(new IntakeForward());
-          operatorController.rightBumper.whileHeld(new ShooterReverse());
 
           operatorController.xButton.whenPressed(new KickerForward());
           operatorController.bButton.whenPressed(new KickerReverse());

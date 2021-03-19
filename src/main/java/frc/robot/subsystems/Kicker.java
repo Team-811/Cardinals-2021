@@ -21,6 +21,7 @@ public class Kicker extends Subsystem implements ISubsystem {
     private TalonSRX kickerMotor;
 
     private boolean kickerExtending = false;
+    private boolean kickerDirection;
 
     public boolean kickerExtending() {
         return kickerExtending;
@@ -35,12 +36,13 @@ public class Kicker extends Subsystem implements ISubsystem {
     public Kicker() {
         kickerMotor = new TalonSRX(RobotMap.TBD1);
         resetData();
-     //  kickerMotor.setInverted(false);
+        kickerMotor.setInverted(false);
 
     }
 
     public void resetData()
     {
+        kickerRetracting = false;
         setUsage ( false );
         setDirection ( true  );
     }
@@ -55,14 +57,24 @@ public class Kicker extends Subsystem implements ISubsystem {
 
     }
     
+    public boolean isInUse (){
+        return kickerExtending;
+    }
+
     public void setUsage ( boolean kflag) {
         kickerExtending = kflag;
 
     }
 
+
     public void setDirection ( boolean kIsExtending ) 
     {
-        kickerExtending = kIsExtending;
+        kickerDirection = kIsExtending;
+    }
+
+    public boolean getDirection()
+    {
+        return kickerDirection;
     }
 
      public void reverseKicker(double speed) {
