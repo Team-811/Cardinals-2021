@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.Kicker.KickerForward;
 
 public class Kicker extends Subsystem implements ISubsystem {
@@ -32,9 +33,16 @@ public class Kicker extends Subsystem implements ISubsystem {
     }
 
     public Kicker() {
-        super();
-        kickerMotor.setInverted(false);
+        kickerMotor = new TalonSRX(RobotMap.TBD1);
+        resetData();
+     //  kickerMotor.setInverted(false);
 
+    }
+
+    public void resetData()
+    {
+        setUsage ( false );
+        setDirection ( true  );
     }
 
     public void forwardKicker(double speed) {
@@ -47,6 +55,15 @@ public class Kicker extends Subsystem implements ISubsystem {
 
     }
     
+    public void setUsage ( boolean kflag) {
+        kickerExtending = kflag;
+
+    }
+
+    public void setDirection ( boolean kIsExtending ) 
+    {
+        kickerExtending = kIsExtending;
+    }
 
      public void reverseKicker(double speed) {
         if (kickerExtending == false) {
