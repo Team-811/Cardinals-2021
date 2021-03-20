@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +21,36 @@ public class Kicker extends Subsystem implements ISubsystem {
     }
  
     private TalonSRX k_Motor;
+    boolean kickerIsRunning;
+
 
     public Kicker() {
         k_Motor = new TalonSRX(RobotMap.KICKER);
         resetSubsystem();
+    }
+
+
+    public void toggleKicker(double speed) {
+        k_Motor.set(ControlMode.PercentOutput, 0);
+        if (speed == 0) {
+            kickerIsRunning = false;
+        } else {
+            kickerIsRunning = true;
+        }
+    }
+
+    public void KickerForward(double speed) {
+        kickerIsRunning = !kickerIsRunning;
+        if (kickerIsRunning) {
+            k_Motor.set(ControlMode.PercentOutput, speed);
+        } else {
+            k_Motor.set(ControlMode.PercentOutput, 0);
+        }
+    }
+
+    public void stopKicker() {
+        kickerIsRunning = false;
+        k_Motor.set(ControlMode.PercentOutput, 0);
     }
     // private boolean kickerExtending = false;
     // private boolean kickerDirection;
@@ -98,11 +125,15 @@ public class Kicker extends Subsystem implements ISubsystem {
     //     kickerMotor.set(ControlMode.PercentOutput, 0);
     // }
 
+    private void configureMotorControllers() {
+        k_Motor.setInverted(true);
+        k_Motor.setNeutralMode(NeutralMode.Brake);
+    }
     @Override
     public void outputSmartdashboard() {
+        SmartDashboard.putBoolean("Kicker On", kickerIsRunning);
        // SmartDashboard.putBoolean("Kicker Extending", kickerExtending);
         //SmartDashboard.putBoolean("Kicker Retracting", kickerRetracting);
-
     }
 
     @Override
@@ -114,6 +145,8 @@ public class Kicker extends Subsystem implements ISubsystem {
 
     @Override
     public void resetSubsystem() {
+        stopKicker();
+        configureMotorControllers();
         //stopKicker();
         zeroSensors();
         

@@ -119,7 +119,7 @@ public class Carousel extends Subsystem implements ISubsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new CarouselForward());
+        //setDefaultCommand(new CarouselForward());
     }
 
     @Override
