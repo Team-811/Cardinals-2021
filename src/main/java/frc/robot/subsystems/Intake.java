@@ -20,11 +20,7 @@ public class Intake extends Subsystem implements ISubsystem {
     private CANSparkMax iMotor;
     private CANEncoder iEncoder;
 
-    private boolean intakeIsRunning = false;
-
-    private boolean intakeIsRunning() {
-        return intakeIsRunning;
-    }
+    private boolean intakeIsRunning;
 
     public Intake() {
         iMotor = new CANSparkMax(RobotMap.INTAKE, MotorType.kBrushless);
@@ -64,11 +60,9 @@ public class Intake extends Subsystem implements ISubsystem {
         iMotor.set(0);
     }
 
-    public double getInVelocity() {
-        return iEncoder.getVelocity(); //check
-    }
 
     private void configureMotorControllers() {
+        zeroSensors();
         iMotor.setInverted(false);
         iMotor.setIdleMode(IdleMode.kBrake);
     }

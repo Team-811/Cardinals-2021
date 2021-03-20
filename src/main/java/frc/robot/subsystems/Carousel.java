@@ -7,8 +7,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Carousel.CarouselForward;
-import frc.robot.Constants;
 
+
+//reverted carousel to the simplest version of itself
 public class Carousel extends Subsystem implements ISubsystem {
     
     private static Carousel instance = new Carousel();

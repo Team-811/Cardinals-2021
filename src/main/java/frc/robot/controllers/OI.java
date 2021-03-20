@@ -42,7 +42,7 @@ public class OI {
           operatorController.xButton.whenPressed(new KickerForward());
           operatorController.bButton.whenPressed(new KickerReverse());
 
-          operatorController.leftTriggerButton.whileHeld(new CarouselForward());
+          driveController.leftTriggerButton.whileHeld(new CarouselForward());
           operatorController.rightTriggerButton.whileHeld(new CarosuelBackward());
 
           operatorController.yButton.whenPressed(new ShooterReverse());

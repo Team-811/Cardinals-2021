@@ -100,14 +100,9 @@ public class Drivetrain extends Subsystem implements ISubsystem {
 
       topRightMotor.set(driveOutput.getRightValue());
       bottomRightMotor.set(driveOutput.getRightValue());
-    }
-
-    
-    else {
-
-
-     
-        driveOutput = drivetrain.arcadeDrive(leftStick * SpeedScale, rotation * SpeedScale * 0.8);
+      
+    } else {
+      driveOutput = drivetrain.arcadeDrive(leftStick * SpeedScale, rotation * SpeedScale * 0.8);
 
       topLeftMotor.set(driveOutput.getLeftValue());
       bottomLeftMotor.set(driveOutput.getLeftValue());

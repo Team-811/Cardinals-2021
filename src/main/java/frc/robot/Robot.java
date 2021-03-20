@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -50,6 +51,10 @@ public class Robot extends TimedRobot {
     intake = Intake.getInstance();
     shooter = Shooter.getInstance();
     controllers = OI.getInstance();
+
+    updateSmartdashboard();
+
+    drivetrain.zeroSensors();
 
 
 
@@ -105,7 +110,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    Scheduler.getInstance().run();
+    updateSmartdashboard();
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
@@ -122,4 +130,14 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {}
+
+  private void updateSmartdashboard() {
+    drivetrain.outputSmartdashboard();
+    shooter.outputSmartdashboard();
+    controllers.outputSmartDashboard();
+    kicker.outputSmartdashboard();
+    carousel.outputSmartdashboard();
+    intake.outputSmartdashboard();
+    shooter.outputSmartdashboard();
+  }
 }
