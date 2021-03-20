@@ -10,6 +10,7 @@ import frc.robot.commands.Carousel.CarouselForward;
 import frc.robot.commands.Drivetrain.NormalDrive;
 import frc.robot.commands.Drivetrain.SlowMode;
 import frc.robot.commands.Intake.IntakeForward;
+import frc.robot.commands.Intake.IntakeReverse;
 // import frc.robot.commands.Kicker.KickerForward;
 // import frc.robot.commands.Kicker.KickerReverse;
 import frc.robot.commands.Shooter.ShooterForward;
@@ -37,15 +38,16 @@ public class OI {
           driveController.startButton.whenPressed(new NormalDrive());
           driveController.leftBumper.whileHeld(new SlowMode());  
 
-          operatorController.aButton.whileHeld(new IntakeForward());
+          operatorController.aButton.whileHeld(new IntakeReverse());
+          operatorController.bButton.whenPressed(new IntakeForward());
 
-        //  operatorController.xButton.whenPressed(new KickerForward());
-        //  operatorController.bButton.whenPressed(new KickerReverse());
+        //operatorController.xButton.whenPressed(new KickerForward());
+         //operatorController.yButton.whenPressed(new KickerReverse());
 
-          driveController.leftTriggerButton.whileHeld(new CarouselForward());
+          operatorController.leftTriggerButton.whileHeld(new CarouselForward());
           operatorController.rightTriggerButton.whileHeld(new CarosuelBackward());
 
-          operatorController.yButton.whenPressed(new ShooterReverse());
+          //operatorController.yButton.whenPressed(new ShooterReverse());
 
         }
         
