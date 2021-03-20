@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.controllers.OI;
-import frc.robot.subsystems.Kicker;
+//import frc.robot.subsystems.Kicker;
 import frc.robot.subsystems.Carousel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -27,7 +27,7 @@ import frc.robot.subsystems.Shooter;
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static OI controllers; 
-  public static Kicker kicker;
+ //public static Kicker kicker;
   public static Carousel carousel;
   public static Intake intake;
   public static Shooter shooter;
@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivetrain = Drivetrain.getInstance();
-    kicker = Kicker.getInstance();
+   // kicker = Kicker.getInstance();
     carousel = Carousel.getInstance();
     intake = Intake.getInstance();
     shooter = Shooter.getInstance();
@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
     drivetrain.outputSmartdashboard();
     shooter.outputSmartdashboard();
     controllers.outputSmartDashboard();
-    kicker.outputSmartdashboard();
+    //kicker.outputSmartdashboard();
     carousel.outputSmartdashboard();
     intake.outputSmartdashboard();
     shooter.outputSmartdashboard();

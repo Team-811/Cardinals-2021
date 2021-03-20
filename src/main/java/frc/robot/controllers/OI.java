@@ -10,8 +10,8 @@ import frc.robot.commands.Carousel.CarouselForward;
 import frc.robot.commands.Drivetrain.NormalDrive;
 import frc.robot.commands.Drivetrain.SlowMode;
 import frc.robot.commands.Intake.IntakeForward;
-import frc.robot.commands.Kicker.KickerForward;
-import frc.robot.commands.Kicker.KickerReverse;
+// import frc.robot.commands.Kicker.KickerForward;
+// import frc.robot.commands.Kicker.KickerReverse;
 import frc.robot.commands.Shooter.ShooterForward;
 import frc.robot.commands.Shooter.ShooterReverse;
 //this import allows us to talk to the smartdashboard to display values for the drivers/pit crew
@@ -39,8 +39,8 @@ public class OI {
 
           operatorController.aButton.whileHeld(new IntakeForward());
 
-          operatorController.xButton.whenPressed(new KickerForward());
-          operatorController.bButton.whenPressed(new KickerReverse());
+        //  operatorController.xButton.whenPressed(new KickerForward());
+        //  operatorController.bButton.whenPressed(new KickerReverse());
 
           driveController.leftTriggerButton.whileHeld(new CarouselForward());
           operatorController.rightTriggerButton.whileHeld(new CarosuelBackward());
@@ -57,8 +57,8 @@ public class OI {
           driveController.aButton.whileHeld(new IntakeForward());
           driveController.rightBumper.whenPressed(new ShooterReverse());
 
-          driveController.xButton.whenPressed(new KickerForward());
-          driveController.bButton.whenPressed(new KickerReverse());
+          // driveController.xButton.whenPressed(new KickerForward());
+          // driveController.bButton.whenPressed(new KickerReverse());
 
           driveController.leftTriggerButton.whileHeld(new CarouselForward());
           driveController.rightTriggerButton.whileHeld(new CarosuelBackward());
