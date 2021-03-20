@@ -40,12 +40,12 @@ public class Carousel extends Subsystem implements ISubsystem {
     }
 
     public void spinCarousel(double speed) {
-        CarouselIsRunning = !CarouselIsRunning;
-        if (CarouselIsRunning){
+        // CarouselIsRunning = !CarouselIsRunning;
+        // if (CarouselIsRunning){
             carouselMotor.set(ControlMode.PercentOutput, speed);
-        }else {
-            carouselMotor.set(ControlMode.PercentOutput, 0);
-        }
+        //  }else {
+        //     carouselMotor.set(ControlMode.PercentOutput, 0);
+        // }
     }
     
     public void stopCarousel() {
@@ -116,6 +116,7 @@ public class Carousel extends Subsystem implements ISubsystem {
         carouselMotor.setInverted(true);
         carouselMotor.setNeutralMode(NeutralMode.Brake); //could be kBrake -- check
     }
+
 
     @Override
     protected void initDefaultCommand() {

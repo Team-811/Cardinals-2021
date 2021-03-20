@@ -1,9 +1,9 @@
 package frc.robot.commands.Carousel;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-/*
-public class CarouselStop extends InstantCommand {
+
+public class CarouselStop extends Command {
 
     public CarouselStop() {
         requires(Robot.carousel);
@@ -24,5 +24,9 @@ public class CarouselStop extends InstantCommand {
     protected void end() {
         
     }
+    
+    @Override
+    protected boolean isFinished(){
+        return false;
+    }
 }
-*/

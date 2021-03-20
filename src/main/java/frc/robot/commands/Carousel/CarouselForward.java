@@ -17,7 +17,7 @@ public class CarouselForward extends Command {
 
     @Override
     protected void execute() {
-      Robot.carousel.spinCarousel(Constants.CAROUSEL_FORWARD_SPEED);
+      Robot.carousel.spinCarousel (Constants.CAROUSEL_FORWARD_SPEED);
     }
 
     @Override

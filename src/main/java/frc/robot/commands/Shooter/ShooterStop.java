@@ -1,11 +1,12 @@
-package frc.robot.commands.Kicker;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import frc.robot.Robot;
 
-public class KickerStop extends Command {
+public class ShooterStop extends Command {
 
-  public KickerStop() {
+  public ShooterStop() {
     requires(Robot.kicker);
   } 
 
@@ -16,7 +17,7 @@ public class KickerStop extends Command {
  
    @Override
      protected void execute() {
-       Robot.kicker.stopKicker();
+       Robot.shooter.stopShooter();
      }
 
    @Override

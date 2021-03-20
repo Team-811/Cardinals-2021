@@ -39,13 +39,10 @@ public class Kicker extends Subsystem implements ISubsystem {
         }
     }
 
-    public void KickerForward(double speed) {
-        kickerIsRunning = !kickerIsRunning;
-        if (kickerIsRunning) {
+    public void forwardKicker(double speed) {
+      
             k_Motor.set(ControlMode.PercentOutput, speed);
-        } else {
-            k_Motor.set(ControlMode.PercentOutput, 0);
-        }
+      
     }
 
     public void stopKicker() {

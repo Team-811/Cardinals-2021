@@ -7,14 +7,19 @@ package frc.robot.controllers;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Carousel.CarosuelBackward;
 import frc.robot.commands.Carousel.CarouselForward;
+import frc.robot.commands.Carousel.CarouselStop;
 import frc.robot.commands.Drivetrain.NormalDrive;
 import frc.robot.commands.Drivetrain.SlowMode;
 import frc.robot.commands.Intake.IntakeForward;
 import frc.robot.commands.Intake.IntakeReverse;
-// import frc.robot.commands.Kicker.KickerForward;
-// import frc.robot.commands.Kicker.KickerReverse;
+import frc.robot.commands.Kicker.KickerForward;
+import frc.robot.commands.Kicker.KickerReverse;
+import frc.robot.commands.Kicker.KickerStop;
+//import frc.robot.commands.Kicker.KickerStop;
 import frc.robot.commands.Shooter.ShooterForward;
 import frc.robot.commands.Shooter.ShooterReverse;
+import frc.robot.commands.Shooter.ShooterStop;
+
 //this import allows us to talk to the smartdashboard to display values for the drivers/pit crew
 //Reminder for Charlotte: SmartDashboard subclass?
 //False is single control
@@ -41,14 +46,25 @@ public class OI {
           operatorController.aButton.whileHeld(new IntakeReverse());
           operatorController.bButton.whenPressed(new IntakeForward());
 
-        //operatorController.xButton.whenPressed(new KickerForward());
-         //operatorController.yButton.whenPressed(new KickerReverse());
+          operatorController.xButton.whenPressed(new KickerForward());
+          operatorController.xButton.whenInactive(new KickerStop());
+          operatorController.yButton.whenPressed(new KickerReverse());
+          operatorController.yButton.whenInactive(new KickerStop());
 
           operatorController.leftTriggerButton.whileHeld(new CarouselForward());
           operatorController.rightTriggerButton.whileHeld(new CarosuelBackward());
+          operatorController.rightTriggerButton.whenReleased(new CarouselStop());
+          operatorController.leftTriggerButton.whenReleased(new CarouselStop());
+
+          operatorController.rightBumper.whileHeld(new ShooterForward());
+          operatorController.rightBumper.whenReleased(new ShooterStop());
+          operatorController.leftBumper.whenPressed(new ShooterReverse());
+          operatorController.leftBumper.whenReleased(new ShooterStop());
+
+
 
           //operatorController.yButton.whenPressed(new ShooterReverse());
-
+            
         }
         
         //Single Controller

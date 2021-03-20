@@ -17,7 +17,7 @@ public class ShooterForward extends InstantCommand {
 
     @Override
     protected void execute() {
-        Robot.shooter.shooterForward(Constants.SHOOTER_SPEED);
+        Robot.shooter.ShooterForward(Constants.SHOOTER_SPEED);
     }
 
     @Override
