@@ -39,7 +39,6 @@ public class Shooter extends Subsystem implements ISubsystem {
 
     public Shooter() {
         sMotor = new CANSparkMax(RobotMap.SHOOTER, MotorType.kBrushless);
-        // sMotor = new CANSparkMax(RobotMap.SHOOTER, MotorType.kBrushed);
         sEncoder = sMotor.getEncoder();
         resetSubsystem();
     }
@@ -85,7 +84,7 @@ public class Shooter extends Subsystem implements ISubsystem {
 
     private void configureMotorControllers() {
         zeroSensors();
-        sMotor.setInverted(false);
+        sMotor.setInverted(true); // set's forward direction properly
         sMotor.setIdleMode(IdleMode.kBrake);
     }
     // // public void runShooter(double speed) {
