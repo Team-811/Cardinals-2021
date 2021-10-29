@@ -1,5 +1,8 @@
 //This is where we bind the commands to the buttons, the format is very simple
 package frc.robot.controllers;
+
+import java.sql.Driver;
+
 /**
  * When you want to bind a button to a command you MUST import the command code, this is the format:
  * import frc.robot.(name of folder it is in).(name of subfolder).command name
@@ -10,11 +13,16 @@ import frc.robot.commands.Carousel.CarouselForward;
 import frc.robot.commands.Carousel.CarouselStop;
 import frc.robot.commands.Drivetrain.NormalDrive;
 import frc.robot.commands.Drivetrain.SlowMode;
+import frc.robot.commands.Intake.IntakeExtend;
 import frc.robot.commands.Intake.IntakeForward;
+import frc.robot.commands.Intake.IntakeRetract;
 import frc.robot.commands.Intake.IntakeReverse;
+import frc.robot.commands.Intake.stopIntake;
 import frc.robot.commands.Kicker.KickerForward;
 import frc.robot.commands.Kicker.KickerReverse;
 import frc.robot.commands.Kicker.KickerStop;
+import frc.robot.commands.Kicker.KickerExtend;
+import frc.robot.commands.Kicker.KickerRetract;
 //import frc.robot.commands.Kicker.KickerStop;
 import frc.robot.commands.Shooter.ShooterForward;
 import frc.robot.commands.Shooter.ShooterReverse;
@@ -42,25 +50,43 @@ public class OI {
             //to diffrentiate the controllers change the controller
           driveController.startButton.whenPressed(new NormalDrive());
           driveController.leftBumper.whileHeld(new SlowMode());  
+          // driveController.aButton.whileHeld(new IntakeExtend());
+          // driveController.aButton.whenInactive(new IntakeRetract());
+          // driveController.xButton.whileHeld(new KickerExtend());
+          // driveController.yButton.whenInactive(new KickerRetract());
+          
 
           operatorController.aButton.whileHeld(new IntakeReverse());
-          operatorController.bButton.whenPressed(new IntakeForward());
+          operatorController.aButton.whenReleased(new stopIntake());
+          operatorController.bButton.whileHeld(new IntakeForward());
+          operatorController.bButton.whenReleased(new stopIntake());
 
-          operatorController.xButton.whenPressed(new KickerForward());
+          operatorController.xButton.whenPressed(new KickerReverse());
           operatorController.xButton.whenInactive(new KickerStop());
-          operatorController.yButton.whenPressed(new KickerReverse());
-          operatorController.yButton.whenInactive(new KickerStop());
+          // operatorController.yButton.whenPressed(new KickerReverse());
+          // operatorController.yButton.whenInactive(new KickerStop());
+
+          
 
           operatorController.leftTriggerButton.whileHeld(new CarouselForward());
           operatorController.rightTriggerButton.whileHeld(new CarosuelBackward());
           operatorController.rightTriggerButton.whenReleased(new CarouselStop());
           operatorController.leftTriggerButton.whenReleased(new CarouselStop());
 
-          operatorController.rightBumper.whileHeld(new ShooterForward());
-          operatorController.rightBumper.whenReleased(new ShooterStop());
-          operatorController.leftBumper.whenPressed(new ShooterReverse());
-          operatorController.leftBumper.whenReleased(new ShooterStop());
+          operatorController.xButton.whenPressed(new ShooterForward());
+          operatorController.xButton.whenReleased(new ShooterStop());
+          // operatorController.yButton.whenPressed(new ShooterReverse());
+          operatorController.yButton.whenReleased(new ShooterStop());
 
+         operatorController.bButton.whileActive(new IntakeExtend());
+         operatorController.aButton.whenActive(new IntakeRetract());
+         operatorController.yButton.whileHeld(new KickerExtend());
+         operatorController.xButton.whenActive(new KickerExtend());
+          
+/*
+          operatorController.startButton.whenPressed(new IntakeExtend());
+          operatorController.startButton.whenInactive(new IntakeRetract());
+*/
 
 
           //operatorController.yButton.whenPressed(new ShooterReverse());
@@ -74,6 +100,8 @@ public class OI {
 
           driveController.aButton.whileHeld(new IntakeForward());
           driveController.rightBumper.whenPressed(new ShooterReverse());
+
+          driveController.xButton.whileActive(new IntakeExtend());
 
           // driveController.xButton.whenPressed(new KickerForward());
           // driveController.bButton.whenPressed(new KickerReverse());

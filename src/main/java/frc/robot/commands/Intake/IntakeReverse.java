@@ -9,7 +9,7 @@ import frc.robot.Robot;
 public class IntakeReverse extends InstantCommand{
 
     public IntakeReverse() {
-        requires(Robot.carousel);
+        requires(Robot.intake);
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -20,15 +22,28 @@ public class Kicker extends Subsystem implements ISubsystem {
         return instance;
     }
  
+    private DoubleSolenoid extendPiston; 
     private TalonSRX k_Motor;
     boolean kickerIsRunning;
 
 
     public Kicker() {
         k_Motor = new TalonSRX(RobotMap.KICKER);
+        extendPiston = new DoubleSolenoid(0, RobotMap.KICKER_PISTON_EXTENTION, RobotMap.KICKER_PISTON_RETRACTION);
+
         resetSubsystem();
     }
 
+    public void extendKicker() {
+        
+        extendPiston.set(Value.kReverse);
+    }
+    public void retractKicker() {
+        extendPiston.set(Value.kForward);
+    }
+    public void stopPistonKicker(){
+        extendPiston.set(Value.kOff);
+    }
 
     public void toggleKicker(double speed) {
         k_Motor.set(ControlMode.PercentOutput, 0);

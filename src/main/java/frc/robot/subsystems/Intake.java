@@ -1,17 +1,22 @@
 package frc.robot.subsystems;
 
+import java.io.Console;
+
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 
 public class Intake extends Subsystem implements ISubsystem {
+
     private static Intake instance = new Intake();    
 
     public static Intake getInstance() {
@@ -20,7 +25,8 @@ public class Intake extends Subsystem implements ISubsystem {
 
     private CANSparkMax iMotor;
     private CANEncoder iEncoder;
-    private Solenoid extendPiston; 
+    private DoubleSolenoid extendPiston; 
+   // private Compressor compressor;
 
     private boolean intakeIsRunning;
 
@@ -29,26 +35,33 @@ public class Intake extends Subsystem implements ISubsystem {
         iMotor = new CANSparkMax(RobotMap.INTAKE, MotorType.kBrushless);
         iEncoder = iMotor.getEncoder();
 
-        extendPiston = new Solenoid(RobotMap.INTAKE_PISTON);
-
+        
+        extendPiston = new DoubleSolenoid(0, RobotMap.INTAKE_PISTON_EXTENTION, RobotMap.INTAKE_PISTON_RETRACTION);
+        
         resetSubsystem();
     }
 
     public void extendIntake() {
-        extendPiston.set(true);
+        
+        extendPiston.set(Value.kReverse);
     }
     public void retractIntake() {
-        extendPiston.set(false);
+        extendPiston.set(Value.kForward);
+    }
+    public void stopPistonIntake(){
+        extendPiston.set(Value.kOff);
     }
 
-    public boolean NeuOn() {
+    /*public boolean NeuOn() {
         if(extendPiston.get()){
             return true;
         } else {
             return false;
         }
     }
+    */
 
+/*
     public void runIntake(double speed) {
         iMotor.set(speed);
         if (speed == 0) {
@@ -57,31 +70,20 @@ public class Intake extends Subsystem implements ISubsystem {
             intakeIsRunning = true;
         }
     }
-
+*/
     public void IntakeForward(double speed) {
-        intakeIsRunning = !intakeIsRunning;
-        if (intakeIsRunning){
-            iMotor.set(speed); 
-            extendIntake();   
-        } else {
-            iMotor.set(0);
-            retractIntake();
-        }
+        intakeIsRunning = true;
+        iMotor.set(speed);
     }
 
     public void intakeReverse(double speed){
-        intakeIsRunning = !intakeIsRunning;
-        if (intakeIsRunning){
-            iMotor.set(speed);
-        } else {
-            iMotor.set(0);
-        }
+        intakeIsRunning = true;
+        iMotor.set(speed);
     }
 
     public void stopIntake() {
         intakeIsRunning = false;
         iMotor.set(0);
-        retractIntake();
     }
 
 
@@ -89,13 +91,13 @@ public class Intake extends Subsystem implements ISubsystem {
         zeroSensors();
         iMotor.setInverted(false);
         iMotor.setIdleMode(IdleMode.kBrake);
-        retractIntake();
+        //retractIntake();
     }
 
     @Override
     public void outputSmartdashboard() {
         SmartDashboard.putBoolean("Intake Running", intakeIsRunning);
-        SmartDashboard.putBoolean("Neumatics On", NeuOn());
+        //SmartDashboard.putBoolean("Neumatics On", NeuOn());
     }
 
     @Override

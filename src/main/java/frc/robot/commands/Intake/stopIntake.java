@@ -1,13 +1,12 @@
-package frc.robot.commands.Shooter;
+package frc.robot.commands.Intake;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
-
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShooterStop extends InstantCommand {
+public class stopIntake extends Command {
 
-  public ShooterStop() {
-    requires(Robot.shooter);
+  public stopIntake() {
+    requires(Robot.intake);
   } 
 
   @Override
@@ -17,7 +16,8 @@ public class ShooterStop extends InstantCommand {
  
    @Override
      protected void execute() {
-       Robot.shooter.ShooterStop();
+       Robot.intake.stopIntake();
+       
      }
 
    @Override

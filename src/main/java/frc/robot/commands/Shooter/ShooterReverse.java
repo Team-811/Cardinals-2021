@@ -8,7 +8,7 @@ import frc.robot.Robot;
 public class ShooterReverse extends InstantCommand {
     
     public ShooterReverse() {
-        requires(Robot.intake);
+        requires(Robot.shooter);
     }
 
     @Override

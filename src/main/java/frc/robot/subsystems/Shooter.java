@@ -60,7 +60,7 @@ public class Shooter extends Subsystem implements ISubsystem {
     public void ShooterForward(double speed) {
         // shooterIsRunning = !shooterIsRunning;
         // if (shooterIsRunning){
-            shooterIsRunning =true;
+            shooterIsRunning = true;
             sMotor.set(speed);    
         // } else {
         //     sMotor.set(0);
@@ -76,7 +76,7 @@ public class Shooter extends Subsystem implements ISubsystem {
     //     // }
     // }
 
-    public void stopShooter() {
+    public void ShooterStop() {
         shooterIsRunning = false;
         sMotor.set(0);
     }
@@ -148,7 +148,7 @@ public class Shooter extends Subsystem implements ISubsystem {
 
     @Override
     public void resetSubsystem() {
-        stopShooter();
+        ShooterStop();
         zeroSensors();
         configureMotorControllers();
     }
